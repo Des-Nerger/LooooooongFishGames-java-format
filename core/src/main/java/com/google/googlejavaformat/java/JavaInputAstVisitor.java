@@ -337,9 +337,9 @@ public class JavaInputAstVisitor extends TreePathScanner<Void, Void> {
     this.builder = builder;
     this.indentMultiplier = indentMultiplier;
     minusTwo = Indent.Const.make(-2, indentMultiplier);
-    minusFour = Indent.Const.make(-4, indentMultiplier);
+    minusFour = Indent.Const.make(/*-*/ -2 /*/ -4 /*-*/, indentMultiplier);
     plusTwo = Indent.Const.make(+2, indentMultiplier);
-    plusFour = Indent.Const.make(+4, indentMultiplier);
+    plusFour = Indent.Const.make(/*-*/ +2 /*/ +4 /*-*/, indentMultiplier);
   }
 
   /** A record of whether we have visited into an expression. */
@@ -1892,7 +1892,7 @@ public class JavaInputAstVisitor extends TreePathScanner<Void, Void> {
     builder.space();
     tokenBreakTrailingComment("{", plusTwo);
     builder.blankLineWanted(BlankLineWanted.NO);
-    builder.open(plusTwo);
+    // builder.open(plusTwo);
     boolean first = true;
     for (CaseTree caseTree : cases) {
       if (!first) {
@@ -1901,7 +1901,7 @@ public class JavaInputAstVisitor extends TreePathScanner<Void, Void> {
       scan(caseTree, null);
       first = false;
     }
-    builder.close();
+    // builder.close();
     builder.forcedBreak();
     builder.blankLineWanted(BlankLineWanted.NO);
     token("}", plusFour);
