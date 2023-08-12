@@ -81,7 +81,7 @@ public final class JavaCommentsHelper implements CommentsHelper {
 
     // output all trailing lines with plausible indentation
     for (int i = 1; i < lines.size(); ++i) {
-      builder.append(lineSeparator).append(Strings.repeat(" ", column0));
+      builder.append(lineSeparator).append(Strings.repeat("\t", column0 / 2));
       // check that startCol is valid index, e.g. for blank lines
       if (lines.get(i).length() >= startCol) {
         builder.append(lines.get(i).substring(startCol));
